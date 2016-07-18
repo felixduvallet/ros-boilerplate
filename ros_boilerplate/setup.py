@@ -2,8 +2,8 @@ from distutils.core import setup
 from catkin_pkg.python_setup import generate_distutils_setup
 
 d = generate_distutils_setup(
-    packages=['handover_planner'],
-    package_dir={'': 'src'}
+    packages=['ros_boilerplate'],
+    package_dir={'': 'src_py'}
 )
 
 setup(**d)
