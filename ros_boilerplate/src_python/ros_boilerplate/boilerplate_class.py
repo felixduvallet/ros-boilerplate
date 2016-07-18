@@ -24,3 +24,6 @@ class BoilerPlate(object):
         """
         self._count += 1
         self._pub.publish('Hello world #{}'.format(self._count))
+
+
+# No main/run code, see boilerplate_node.py for the node execution.
