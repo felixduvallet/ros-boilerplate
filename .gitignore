@@ -27,3 +27,9 @@
 *.exe
 *.out
 *.app
+
+# Python stuff
+*.pyc
+
+# Temporary files
+*~
