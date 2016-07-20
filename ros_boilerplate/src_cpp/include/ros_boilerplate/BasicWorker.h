@@ -1,6 +1,7 @@
 #ifndef __ROS_BOILERPLATE_H__
 #define __ROS_BOILERPLATE_H__
 
+#include <ros/ros.h>
 #include <std_msgs/Int32.h>
 
 class BasicWorker {
