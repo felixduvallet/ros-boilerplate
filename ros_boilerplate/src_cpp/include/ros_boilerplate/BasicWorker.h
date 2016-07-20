@@ -3,13 +3,13 @@
 
 #include <std_msgs/Int32.h>
 
-class BoilerPlate {
+class BasicWorker {
 public:
-  BoilerPlate(ros::NodeHandle *nodeHandle);
+  BasicWorker(ros::NodeHandle *nodeHandle);
 
   bool init();
 
-  bool spinOnce();
+  bool work();
 
   void MsgCB(const std_msgs::Int32::ConstPtr &msg);
 protected:

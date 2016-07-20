@@ -101,7 +101,7 @@ set(SRC_DIR src_cpp)
 
 ## Declare a C++ library
 add_library(ros_boilerplate
-  ${SRC_DIR}/BoilerPlate.cpp
+  ${SRC_DIR}/BasicWorker.cpp
 )
 
 ## Add cmake target dependencies of the library
