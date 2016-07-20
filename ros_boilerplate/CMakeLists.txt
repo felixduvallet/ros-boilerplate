@@ -1,13 +1,24 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(ros_boilerplate)
 
+macro(use_cxx11)
+  if (CMAKE_VERSION VERSION_LESS "3.1")
+    if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+      set (CMAKE_CXX_FLAGS "--std=gnu++11 ${CMAKE_CXX_FLAGS}")
+    endif ()
+  else ()
+    set (CMAKE_CXX_STANDARD 11)
+  endif ()
+endmacro(use_cxx11)
+use_cxx11()
+
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
     roscpp
     rospy
-    )
+)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -143,11 +154,10 @@ target_link_libraries(ros_boilerplate_node
 # )
 
 ## Mark cpp header files for installation
-# install(DIRECTORY include/${PROJECT_NAME}/
-#   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-#   FILES_MATCHING PATTERN "*.h"
-#   PATTERN ".svn" EXCLUDE
-# )
+install(DIRECTORY ${SRC_DIR}/include/${PROJECT_NAME}/
+    DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+    FILES_MATCHING PATTERN "*.h"
+    )
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
 # install(FILES
@@ -160,12 +170,16 @@ target_link_libraries(ros_boilerplate_node
 ## Testing ##
 #############
 
-## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_ros_boilerplate.cpp)
-# if(TARGET ${PROJECT_NAME}-test)
-#   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
-# endif()
-
 if (CATKIN_ENABLE_TESTING)
   catkin_add_nosetests(src_python/ros_boilerplate)
+
+  catkin_add_gtest(${PROJECT_NAME}_test
+        ${SRC_DIR}/test/TestWorker.cpp)
+  add_dependencies(${PROJECT_NAME}_test
+      ${${PROJECT_NAME}_EXPORTED_TARGETS}
+      ${catkin_EXPORTED_TARGETS})
+  target_link_libraries(${PROJECT_NAME}_test
+      ros_boilerplate
+      ${catkin_LIBRARIES}
+      )
 endif ()
