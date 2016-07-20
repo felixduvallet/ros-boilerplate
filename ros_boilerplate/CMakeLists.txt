@@ -5,13 +5,12 @@ project(ros_boilerplate)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  rospy
-)
+    roscpp
+    rospy
+    )
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
-
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -79,10 +78,10 @@ catkin_python_setup()
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES ros_boilerplate
-  CATKIN_DEPENDS roscpp rospy
-#  DEPENDS system_lib
+    #  INCLUDE_DIRS include
+    #  LIBRARIES ros_boilerplate
+    CATKIN_DEPENDS roscpp rospy
+    #  DEPENDS system_lib
 )
 
 ###########
@@ -93,16 +92,16 @@ catkin_package(
 ## Your package locations should be listed before other locations
 # include_directories(include)
 include_directories(
-  src_cpp/include
-  ${catkin_INCLUDE_DIRS}
+    src_cpp/include
+    ${catkin_INCLUDE_DIRS}
 )
 
 set(SRC_DIR src_cpp)
 
 ## Declare a C++ library
 add_library(ros_boilerplate
-  ${SRC_DIR}/BasicWorker.cpp
-)
+    ${SRC_DIR}/BasicWorker.cpp
+    )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -118,9 +117,9 @@ add_dependencies(ros_boilerplate_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catk
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(ros_boilerplate_node
-        ros_boilerplate
-   ${catkin_LIBRARIES}
-)
+    ros_boilerplate
+    ${catkin_LIBRARIES}
+    )
 
 #############
 ## Install ##
@@ -167,7 +166,6 @@ target_link_libraries(ros_boilerplate_node
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
 
-
-if(CATKIN_ENABLE_TESTING)
+if (CATKIN_ENABLE_TESTING)
   catkin_add_nosetests(src_python/ros_boilerplate)
-endif()
+endif ()
