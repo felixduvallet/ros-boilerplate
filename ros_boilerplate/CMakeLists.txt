@@ -69,26 +69,6 @@ catkin_python_setup()
 #   std_msgs  # Or other packages containing msgs
 # )
 
-################################################
-## Declare ROS dynamic reconfigure parameters ##
-################################################
-
-## To declare and build dynamic reconfigure parameters within this
-## package, follow these steps:
-## * In the file package.xml:
-##   * add a build_depend and a run_depend tag for "dynamic_reconfigure"
-## * In this file (CMakeLists.txt):
-##   * add "dynamic_reconfigure" to
-##     find_package(catkin REQUIRED COMPONENTS ...)
-##   * uncomment the "generate_dynamic_reconfigure_options" section below
-##     and list every .cfg file to be processed
-
-## Generate dynamic reconfigure parameters in the 'cfg' folder
-# generate_dynamic_reconfigure_options(
-#   cfg/DynReconf1.cfg
-#   cfg/DynReconf2.cfg
-# )
-
 ###################################
 ## catkin specific configuration ##
 ###################################
@@ -101,7 +81,7 @@ catkin_python_setup()
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES ros_boilerplate
-#  CATKIN_DEPENDS roscpp rospy
+  CATKIN_DEPENDS roscpp rospy
 #  DEPENDS system_lib
 )
 
@@ -113,30 +93,34 @@ catkin_package(
 ## Your package locations should be listed before other locations
 # include_directories(include)
 include_directories(
+  src_cpp/include
   ${catkin_INCLUDE_DIRS}
 )
 
+set(SRC_DIR src_cpp)
+
 ## Declare a C++ library
-# add_library(ros_boilerplate
-#   src/${PROJECT_NAME}/ros_boilerplate.cpp
-# )
+add_library(ros_boilerplate
+  ${SRC_DIR}/BoilerPlate.cpp
+)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-# add_dependencies(ros_boilerplate ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(ros_boilerplate ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-# add_executable(ros_boilerplate_node src/ros_boilerplate_node.cpp)
+add_executable(ros_boilerplate_node ${SRC_DIR}/run_boilerplate_node.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(ros_boilerplate_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(ros_boilerplate_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(ros_boilerplate_node
-#   ${catkin_LIBRARIES}
-# )
+target_link_libraries(ros_boilerplate_node
+        ros_boilerplate
+   ${catkin_LIBRARIES}
+)
 
 #############
 ## Install ##
