@@ -8,8 +8,8 @@ class BoilerPlate(object):
     """
 
     def __init__(self):
-        self._pub = rospy.Publisher('/foo', String, queue_size=10)
-        self._sub = rospy.Subscriber('/foo', String, self._string_cb)
+        self._pub = rospy.Publisher('foo_py', String, queue_size=10)
+        self._sub = rospy.Subscriber('foo_py', String, self._string_cb)
         self._count = 0
 
     def _string_cb(self, msg):

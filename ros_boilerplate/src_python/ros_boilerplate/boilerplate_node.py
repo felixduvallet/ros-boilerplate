@@ -21,4 +21,5 @@ def run():
     rospy.loginfo('Node finished')
 
 if __name__ == '__main__':
+    # TODO add argument parsing.
     run()
