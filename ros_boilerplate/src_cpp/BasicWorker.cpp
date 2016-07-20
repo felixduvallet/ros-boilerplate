@@ -4,14 +4,14 @@
 #include <ros_boilerplate/BasicWorker.h>
 
 BasicWorker::BasicWorker(ros::NodeHandle *nodeHandle)
-  : nodeHandle_(nodeHandle) {
+    : nodeHandle_(nodeHandle) {
   counter_ = 0;
 }
 
 bool BasicWorker::init() {
-  //subscriber_ = ros::Subscriber()
   publisher_ = nodeHandle_->advertise<std_msgs::Int32>("foo_cpp", 10);
-  subscriber_ = nodeHandle_->subscribe("foo_cpp", 10, &BasicWorker::MsgCB, this);
+  subscriber_ =
+      nodeHandle_->subscribe("foo_cpp", 10, &BasicWorker::MsgCB, this);
   ROS_INFO_STREAM("Started subscriber " << subscriber_);
   return true;
 }
@@ -22,7 +22,6 @@ void BasicWorker::MsgCB(const std_msgs::Int32ConstPtr &msg) {
 }
 
 bool BasicWorker::work() {
-
   std_msgs::Int32 msg;
   msg.data = ++counter_;
 

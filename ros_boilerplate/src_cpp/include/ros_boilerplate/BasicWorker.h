@@ -4,7 +4,7 @@
 #include <std_msgs/Int32.h>
 
 class BasicWorker {
-public:
+ public:
   BasicWorker(ros::NodeHandle *nodeHandle);
 
   bool init();
@@ -12,14 +12,14 @@ public:
   bool work();
 
   void MsgCB(const std_msgs::Int32::ConstPtr &msg);
-protected:
+
+ protected:
   ros::NodeHandle *nodeHandle_;
   ros::Publisher publisher_;
 
   ros::Subscriber subscriber_;
 
   int counter_;
-
 };
 
 #endif  // __ROS_BOILERPLATE_H__
