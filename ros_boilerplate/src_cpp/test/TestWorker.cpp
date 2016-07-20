@@ -4,9 +4,7 @@
 
 namespace {
 
-
 class BasicTest: public ::testing::Test {
-
   void SetUp() {
     worker.reset(new BasicWorker(NULL));
   }
