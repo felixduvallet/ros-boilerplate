@@ -19,6 +19,8 @@ int main(int argc, char **argv) {
   while(ros::ok()) {
     boilerPlate.spinOnce();
 
+    // Don't forget to call spinOnce to process messages, then sleep.
+    ros::spinOnce();
     rate.sleep();
   }
 
